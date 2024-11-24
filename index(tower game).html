@@ -95,19 +95,18 @@
 
             for (let n = 0; n < boxes.length; n++) {
                 let box = boxes[n];
-                // make the boxes lighter as they go down
+                
                 context.fillStyle = 'rgb(' + n * 16 + ',' + n * 16 + ',' + n * 16 + ')';
 
-                // draw the box  and shift it down
+    
                 context.fillRect(box.x, 600 - box.y + cameraY, box.width, height);
             }
 
-            // draw the debris
             context.fillStyle = 'yellow';
             context.fillRect(debris.x, 600 - debris.y + cameraY, debris.width, height);
 
 
-            //   MOVEMENT OF BOXES left and right before falling
+            
             if (mode == 'bounce') {
                 boxes[current].x = boxes[current].x + xSpeed;
                 if (xSpeed > 0 && boxes[current].x + boxes[current].width > canvas.width)
@@ -119,7 +118,7 @@
 
 
             if (mode == 'fall') {
-                // FALLING OF BOXES -- SPEED
+                
                 boxes[current].y = boxes[current].y - ySpeed;
 
                 
@@ -135,13 +134,13 @@
                     };
 
 
-                    // CUT THE BOX FROM RIGHT SIDE
+            
                     if (boxes[current].x > boxes[current - 1].x) {
                         boxes[current].width = boxes[current].width - difference;
                         debris.x = boxes[current].x + boxes[current].width;
                     }
 
-                    // CUT THE BOX FROM LEFT SIDE
+                
                     else {
                         debris.x = boxes[current].x - difference;
                         boxes[current].width = boxes[current].width + difference;
@@ -149,11 +148,11 @@
                     }
 
 
-                    // INCREASE SPEED OF BOUNCE 
+    
                     if (xSpeed > 0)
                         xSpeed++;
 
-                    // DECREASE SPEED OF BOUNCED
+                
                     else
                         xSpeed--;
 
@@ -162,11 +161,11 @@
                     newBox();
                 }
             }
-            // FALLING OF DEBRIS-- SPEED
+            
             debris.y = debris.y - ySpeed;
 
 
-            // SHIFTING THE STACK DOWN 
+        
             if (scrollCounter) {
                 cameraY++;
                 scrollCounter--;
